@@ -3,13 +3,10 @@ import hashlib
 import sys
 
 def main(args):
-    os.chdir(args[1])
-    folderItems = os.listdir()
-    files = []
 
-    for item in folderItems:
-        if os.path.isfile("./"+item) == True:
-            files.append(item)
+    os.chdir(args[1])
+
+    files = getdirfiles()
     
     for file in files:
         hash = hashlib.sha256()
@@ -21,6 +18,16 @@ def main(args):
         f.close()
         b.close()
     return
+
+def getdirfiles():
+    folderItems = os.listdir()
+    files = []
+
+    for item in folderItems:
+        if os.path.isfile("./"+item) == True:
+            files.append(item)
+            
+    return files
 
 if __name__ == "__main__":
     main(sys.argv)
