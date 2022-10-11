@@ -12,12 +12,14 @@ def main(args):
             files.append(item)
     
     for file in files:
-        hash = haslib.sha256()
+        hash = hashlib.sha256()
         f = open("./"+file+"_checksum.txt", "w")
+        b = open(file, 'rb')
 
-        hash.update("./"+file)
+        hash.update(b.read())
         f.write(hash.hexdigest())
         f.close()
+        b.close()
     return
 
 if __name__ == "__main__":
